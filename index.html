@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Service Worker</title>
+  <meta name="description" content="WebApp de exemplo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="img/icon.png">
+  <meta name="theme-color" content="#F77F00">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Bakery">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon-precomposed" href="img/icon.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="img/icon.png">
+  <meta name="msapplication-TileColor" content="#F77F00">
+
+  <link rel="stylesheet" href="main.css">
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+  <script src="https://use.fontawesome.com/6a6312675e.js"></script>
+  <script src="https://use.fontawesome.com/webfontloader/1.6.24/webfontloader.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <!-- Configura a url -->
+  <script>
+    if (window.location.protocol != "https:" && window.location.hostname == "gss-patricia.github.io")
+      window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+  </script>
+
+</head>
+
+<body>
+<div class="wrapper">
+  <div id="wizard" class="wizard">
+    <div class="wizard__content">
+      <header class="wizard__header">
+        <div class="wizard__header-overlay"></div>
+
+        <div class="wizard__header-content">
+          <h1 class="wizard__title">MATERA SNACKBAR!</h1>
+          <p class="wizard__subheading">Faça o pagamento em<span>3</span> simples passos.</p>
+        </div>
+
+        <div class="wizard__steps">
+          <nav class="steps">
+            <div class="step">
+              <div class="step__content">
+                <p class="step__number"><i class="fa fa-comment" aria-hidden="true"></i></p>
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle>
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+                </svg>
+
+                <div class="lines">
+                  <div class="line -start">
+                  </div>
+
+                  <div class="line -background">
+                  </div>
+
+                  <div class="line -progress">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step__content">
+                <p class="step__number"><i class="fa fa-credit-card-alt " aria-hidden="true"></i></p>
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle>
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+                </svg>
+
+                <div class="lines">
+                  <div class="line -background">
+                  </div>
+
+                  <div class="line -progress">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step__content">
+                <p class="step__number"><i class="fa fa-group" aria-hidden="true"></i></p>
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle>
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+                </svg>
+
+                <div class="lines">
+                  <div class="line -background">
+                  </div>
+
+                  <div class="line -progress">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+
+      <div class="panels" style="height: 289px;">
+        <div class="panel movingIn">
+          <header class="panel__header">
+            <h2 class="panel__title">Pagamento com BEPAY.</h2>
+            <p class="panel__subheading">With github you can show your projects and find new things everyday!</p>
+          </header>
+
+          <p class="panel__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <p class="panel__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="panel movingOutFoward">
+          <header class="panel__header">
+            <h2 class="panel__title">Escanei o seu QR Code</h2>
+          </header>
+
+          <div id="reader" style="width:300px;height:250px"></div>
+
+          <p class="panel__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p class="panel__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div class="panel movingOutFoward">
+          <header class="panel__header">
+            <h2 class="panel__title">Stay in touch with the community.</h2>
+            <p class="panel__subheading">Community is everything, and here we do some crazy stuff.</p>
+          </header>
+
+          <p class="panel__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+
+      <div class="wizard__footer">
+        <button class="button previous disabled">Previous</button>
+        <button class="button next">Next</button>
+      </div>
+    </div>
+
+    <h1 class="wizard__congrats-message">
+      Congratulations, you are now in a world of pain and suffering!
+    </h1>
+  </div>
+</div>
+
+<script type="text/javascript" src="html5-qrcode-master/lib/jsqrcode-combined.min.js"></script>
+<script type="text/javascript" src="html5-qrcode-master/lib/html5-qrcode.min.js"></script>
+
+<script>
+//    $('#reader').html5_qrcode(function(data){
+//            // do something when code is read
+//            $('#reader').html5_qrcode_stop();
+//        },
+//        function(error){
+//            //show read errors
+//        }, function(videoError){
+//            //the video stream could be opened
+//        }
+//    );
+</script>
+</body>
+
+</html>
+
