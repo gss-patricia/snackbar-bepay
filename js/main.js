@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }, {
             key: 'getSteps',
             value: function getSteps() {
+                $("#reader").hide();
+                var visible = $("#reader").is( ":visible" );
+                if(visible) {
+                    $('#reader').html5_qrcode_stop();
+                }
+                $("#reader").show();
                 return this.wizard.getElementsByClassName('step');
             }
         }, {
@@ -62,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             value: function handleStepsClasses(movement) {
                 $('#reader').html5_qrcode(function(data){
                         // do something when code is read
-                        $('#reader').html5_qrcode_stop();
+                        console.log(data);
                     },
                     function(error){
                         //show read errors
@@ -174,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             key: 'handleNextStepButton',
             value: function handleNextStepButton() {
                 if (this.currentStep === this.stepsQuantity - 1) {
-                    this.nextControl.innerHTML = 'Conclude!';
+                    this.nextControl.innerHTML = 'Concluir!';
 
                     this.nextControl.removeEventListener('click', this.nextControlMoveStepMethod);
                     this.nextControl.addEventListener('click', this.concludeControlMoveStepMethod);

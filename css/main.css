@@ -6,6 +6,10 @@ body, html {
   color: #676767;
 }
 
+.bold{
+  font-weight: 600;
+}
+
 .wrapper {
   position: relative;
   max-width: 1080px;
